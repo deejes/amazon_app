@@ -1,0 +1,32 @@
+<%#edit.html.erb%>
+<h1>Edit product</h1>
+
+<%# When you pesisted active record objec to a `form_for`
+the it will use the url to the update action which is the same url
+for the show action (product_path(@product)) except that it will the
+PATCH verb instead of GET. It will achieve this by adding an hidden
+input field with the name `_method` with the value `PATCH`.
+
+In addition, all the fields will be prepopulated with data from the database. %>
+
+<%= form_for @product do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div>
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+  </div>
+  <div>
+      <%= f.label :category %>
+      <%= f.collection_select :category_id, Category.all, :id, :name %>
+    </div>
+  <%= f.submit %>
+<% end %>

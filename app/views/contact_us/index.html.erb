@@ -1,0 +1,41 @@
+<h1>Contact Us</h1>
+
+<% if @name.present? %>
+<div>
+  <h1>Hello <%= @name %> ,  thank you getting in touch with us.</h1>
+
+</div>
+<% end %>
+
+<%= form_tag contact_us_url do %>
+    <div>
+      <%= label_tag :name %>
+      <%= text_field_tag :name %>
+    </div>
+    <div>
+      <%= label_tag :email %>
+      <%= text_field_tag :email %>
+    </div>
+    <div>
+      <%= label_tag :message %>
+      <%= text_area_tag :message %>
+    </div>
+    <%= submit_tag 'Contact Us' %>
+
+
+<% end %>
+
+<!-- <form class="" action="" method="">
+  Name:
+  <input type="text">
+  <br>
+  Email:
+  <input type="text">
+  <br>
+  Message:
+  <input type="text">
+  <br>
+  <input type="submit">
+
+
+</form> -->

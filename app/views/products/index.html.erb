@@ -1,0 +1,7 @@
+<h1>All Products</h1>
+
+<% @products.each do |question| %>
+  <%= link_to question.title, product_path(question) %>
+  <br>
+
+<% end %>

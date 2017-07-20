@@ -2,12 +2,26 @@
 <html>
   <head>
     <title>Amazon</title>
+
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
+  <div class="">
+    <span> <a href="/home"> Home </a></span>
+    <span> <a href="/about"> about</a></span>
+    <span> <a href="/contact_us"> Contact Us</a></span>
+    <span> <a href="/products"> Products </a></span>
+    <% if user_signed_in?%>
+      <span> Hello <%= current_user.full_name %>! </span>
 
+      <%= link_to 'Sign Out', session_path, method: :delete %>
+    <% else%>
+    <span> <a href="/session/new"> Sign In </a></span>
+    <span> <a href="/users/new"> Sign Up </a></span>
+    <%end%>
+  </div>
   <body>
     <%= yield %>
   </body>

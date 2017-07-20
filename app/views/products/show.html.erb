@@ -1,0 +1,54 @@
+<h1>
+  <%= @product.title%>
+
+</h1>
+<h1>
+  Description : <%= @product.description%>
+
+</h1>
+<h1>
+  Price : $<%= @product.price%>
+
+</h1>
+<h1>
+  Category : <%=@product.category.name%>
+
+</h1>
+<p><strong>Seller: </strong> <%= @product.user&.full_name %></p>
+
+<% if user_signed_in? && can?(:edit, @product)%>
+<%= link_to 'Edit', edit_product_path(@product) %>
+<%end%>
+
+<% if user_signed_in? && can?(:destroy, @product)%>
+<%= link_to 'Delete',
+  product_path(@product),
+  method: :delete %>
+<%end%>
+
+  <div>
+    <h3>Add a Review </h3>
+    <%= form_for([@product, Review.new]) do |f| %>
+      <div>
+        <%= f.label :body %>
+        <%= f.text_area :body %>
+      </div>
+      <div>
+        <%= f.label :rating %>
+        <%= f.select :rating, [5,4,3,2,1] %>
+      </div>
+      <%= f.submit %>
+    <% end %>
+  </div>
+
+  <div>
+    <% @product.review_list.each do |review| %>
+      <div>
+        <p><%= review.body %></p>
+        <p>Rating: <%= review.rating %></p>
+        <p><%= link_to 'Delete', product_review_path(@product, review),
+                method: :delete, data: { confirm: 'Are you sure?'} %>
+        </p>
+      </div>
+    <% end %>
+  </div>
