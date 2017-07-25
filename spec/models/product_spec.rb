@@ -9,8 +9,11 @@ RSpec.describe Product, type: :model do
         expect(u.errors).to have_key(:title)
       end
     it('must be unique') do
-      u = Product.create(title:'Arubberduck', description:"this is a big ass large rubber duck", price:23)
-      u2 = Product.new(title:'Arubberduck', description:"athis is a big ass large rubber duck", price:123)
+      user = FactoryGirl.create(:user)
+      category = FactoryGirl.create(:category)
+      u = Product.create(title:'Arubberduck', description:"this is a big ass large rubber duck", price:23, user: user, category: category)
+      u2 = Product.create(title:'Arubberduck', description:"athis is a big ass large rubber duck", price:123, user: user, category: category)
+      # byebug
       u2.valid?
       expect(u2.errors.messages).to have_key(:title)
     end
