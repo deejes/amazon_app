@@ -27,7 +27,7 @@ GEM
     activejob (5.1.2)
       activesupport (= 5.1.2)
       globalid (>= 0.3.6)
-    activemo`del (5.1.2)
+    activemodel (5.1.2)
       activesupport (= 5.1.2)
     activerecord (5.1.2)
       activemodel (= 5.1.2)
@@ -204,6 +204,7 @@ DEPENDENCIES
   awesome_print
   bcrypt (~> 3.1.7)
   bootstrap-sass (~> 3.3.6)
+  bundler
   byebug
   cancancan (~> 2.0)
   coffee-rails (~> 4.2)
