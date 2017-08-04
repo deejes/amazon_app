@@ -8,6 +8,9 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @product = Product.find(params[:product_id])
     @review['product_id'] = params[:product_id]
+    @review['user_id'] = current_user.id
+
+    # byebug
     if @review.save
       redirect_to @product, notice: "review successfully created"
       puts "that worked!"

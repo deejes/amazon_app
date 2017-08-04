@@ -1,11 +1,14 @@
-<h1>
-  <%= @product.title%>
+<h1><%= @product.title%></h1>
+<h1>  Description : <%= @product.description%></h1>
 
-</h1>
-<h1>
-  Description : <%= @product.description%>
 
-</h1>
+<% @product.tags.each do |f|%>
+<h3>
+    <%= link_to f.name, tag_path(f) %>
+</h3>
+
+<%  end %>
+
 <h1>
   Price : $<%= @product.price%>
 
@@ -46,6 +49,21 @@
       <div>
         <p><%= review.body %></p>
         <p>Rating: <%= review.rating %></p>
+
+
+        <%@like = review.likes.find_by(user: current_user)%>
+        <%if @like.present?%>
+        <%= link_to 'unlike', review_like_path(review,@like), method: :delete%>
+        <%else%>
+        <%= link_to 'like', review_likes_path(review), method: :post%>
+        <%end%>
+
+
+
+        <%= pluralize review.likes.count, 'like' %>
+
+
+
         <p><%= link_to 'Delete', product_review_path(@product, review),
                 method: :delete, data: { confirm: 'Are you sure?'} %>
         </p>

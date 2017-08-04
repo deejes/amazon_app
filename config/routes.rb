@@ -5,10 +5,18 @@ Rails.application.routes.draw do
   end
 
   resources :users
+  resources :tags
 
   resources :products do
      resources :reviews
    end
+   resources :products do
+      resources :favorites
+    end
+
+   resources :reviews do
+      resources :likes
+    end
 
    resource :session
   # get 'products/:id'x

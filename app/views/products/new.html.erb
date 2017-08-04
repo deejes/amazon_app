@@ -16,9 +16,14 @@
 </div>
 
 <div>
-    <%= f.label :category %>
-    <%= f.collection_select :category_id, Category.all, :id, :name %>
-  </div>
+  <%= f.label :category %>
+  <%= f.collection_select :category_id, Category.all, :id, :name %>
+</div>
+
+<div>
+  <%= f.label :tag_list, "Tags(seperated by commas)" %>
+  <%= f.text_field :tag_list %>
+</div>
 
 <div>
   <%= f.submit %>
